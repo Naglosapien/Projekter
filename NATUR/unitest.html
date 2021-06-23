@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Test Site</title>
+  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.15.0.css">
+
+</head>
+
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+  <script src="https://code.jquery.com/qunit/qunit-2.15.0.js"></script>
+  <script src="controller.js"></script>
+  <script>
+    // model
+    var tasks;
+    var inputs = {};
+
+    
+    function show(){}
+
+   QUnit.test('slette task', function (assert) {
+      // arrange-model
+        tasks = [
+            { description: 'A', isDone: true, person: 'Person'}, // index 0
+            { description: 'B', isDone: true, person: 'Person'}, // index 1
+            { description: 'C', isDone: true, person: 'Person'}, // index 2
+        ];
+
+      // act
+      deleteTask(1);
+
+      // assert
+      assert.equal(tasks.length, 2);
+      assert.equal(tasks[0].description, 'A');
+      assert.equal(tasks[1].description, 'C');
+    });
+    
+    QUnit.test('endre description task', function (assert) {
+      // arrange-model
+        tasks = [
+            { description: 'A', isDone: true, person: 'Person'}, // index 0
+        ];
+        inputs.description = 'Terje';
+
+      // act
+      updateTask(0);
+
+      // assert
+      assert.equal(tasks[0].description, 'Terje');
+      
+    });
+
+
+
+
+
+  </script>
+</body>
+
+</html>
